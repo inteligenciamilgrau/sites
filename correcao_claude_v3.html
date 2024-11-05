@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Correção de Provas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            padding: 20px;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e88e5, #1565c0);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .exam-info {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .info-item {
+            background: rgba(255,255,255,0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 500;
+        }
+
+        .correct {
+            background-color: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .incorrect {
+            background-color: #ffcdd2;
+            color: #c62828;
+        }
+
+        .summary {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .file-input {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .percentage {
+            color: #666;
+            font-style: italic;
+        }
+
+        button {
+            background-color: #1e88e5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1565c0;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Correção de Provas</h1>
+            <div class="exam-info" id="examInfo">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Update the file input section -->
+        <div class="file-input">
+            <label for="studentFile">Selecione o arquivo do aluno:</label>
+            <input type="file" id="studentFile" accept=".json" onchange="loadAndCompare()">
+            <span id="loading">Carregando...</span>
+        </div>
+
+        <div class="summary" id="totalSummary"></div>
+        <div class="summary" id="areaSummary"></div>
+        
+        <table id="resultTable">
+            <thead>
+                <tr>
+                    <th>Questão</th>
+                    <th>Resposta do Aluno</th>
+                    <th>Gabarito Objetivo</th>
+                    <th>Resultado Objetivo</th>
+                    <th>Gabarito Anglo</th>
+                    <th>Resultado Anglo</th>
+                </tr>
+            </thead>
+            <tbody id="resultBody"></tbody>
+        </table>
+    </div>
+
+    <script>
+        async function loadJSON(file) {
+            try {
+                const response = await fetch(file);
+                return await response.json();
+            } catch (error) {
+                console.error(`Error loading ${file}:`, error);
+                throw error;
+            }
+        }
+
+        function readFileContent(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = event => resolve(JSON.parse(event.target.result));
+                reader.onerror = error => reject(error);
+                reader.readAsText(file);
+            });
+        }
+
+        async function loadAndCompare() {
+            const loading = document.getElementById('loading');
+            loading.style.display = 'inline';
+
+            try {
+                const studentFile = document.getElementById('studentFile').files[0];
+                if (!studentFile) {
+                    return;
+                }
+
+                const [studentData, gabaritoObjetivo, gabaritoAnglo] = await Promise.all([
+                    readFileContent(studentFile),
+                    loadJSON('gabarito_objetivo.json'),
+                    loadJSON('gabarito_anglo.json')
+                ]);
+
+                compareAnswers(studentData, gabaritoObjetivo, gabaritoAnglo);
+            } catch (error) {
+                alert('Erro ao carregar os arquivos JSON');
+                console.error(error);
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        function calculatePercentage(correct, total) {
+            return ((correct / total) * 100).toFixed(1);
+        }
+
+        function compareAnswers(studentData, gabaritoObjetivo, gabaritoAnglo) {
+            // Add exam info to header
+            document.getElementById('examInfo').innerHTML = `
+                <div class="info-item">Prova ${studentData.prova}</div>
+                <div class="info-item">Ano ${studentData.ano}</div>
+                <div class="info-item">Data: ${studentData.data}</div>
+                <div class="info-item">Tempo: ${studentData.tempo}</div>
+            `;
+
+            const tbody = document.getElementById('resultBody');
+            tbody.innerHTML = '';
+
+            let resultsObjetivo = {
+                total: 0,
+                ingles: { correct: 0, total: 0 },
+                espanhol: { correct: 0, total: 0 },
+                linguagens: { correct: 0, total: 0 },
+                humanas: { correct: 0, total: 0 }
+            };
+
+            let resultsAnglo = {
+                total: 0,
+                ingles: { correct: 0, total: 0 },
+                espanhol: { correct: 0, total: 0 },
+                linguagens: { correct: 0, total: 0 },
+                humanas: { correct: 0, total: 0 }
+            };
+
+            studentData.questoes.forEach(question => {
+                const row = document.createElement('tr');
+                const objetivoAnswer = gabaritoObjetivo.questoes.find(q => q.questao === question.questao);
+                const angloAnswer = gabaritoAnglo.questoes.find(q => q.questao === question.questao);
+                
+                const isCorrectObjetivo = objetivoAnswer && question.resposta === objetivoAnswer.resposta;
+                const isCorrectAnglo = angloAnswer && question.resposta === angloAnswer.resposta;
+
+                if (isCorrectObjetivo) resultsObjetivo.total++;
+                if (isCorrectAnglo) resultsAnglo.total++;
+
+                // Count area results for both gabaritos
+                const updateAreaResults = (results, isCorrect) => {
+                    if (question.questao.includes("Ingles")) {
+                        results.ingles.total++;
+                        if (isCorrect) results.ingles.correct++;
+                    } else if (question.questao.includes("Espanhol")) {
+                        results.espanhol.total++;
+                        if (isCorrect) results.espanhol.correct++;
+                    } else if (question.questao.includes("Linguagens")) {
+                        results.linguagens.total++;
+                        if (isCorrect) results.linguagens.correct++;
+                    } else if (question.questao.includes("Humanas")) {
+                        results.humanas.total++;
+                        if (isCorrect) results.humanas.correct++;
+                    }
+                };
+
+                updateAreaResults(resultsObjetivo, isCorrectObjetivo);
+                updateAreaResults(resultsAnglo, isCorrectAnglo);
+
+                row.innerHTML = `
+                    <td>${question.questao}</td>
+                    <td>${question.resposta}</td>
+                    <td>${objetivoAnswer ? objetivoAnswer.resposta : 'N/A'}</td>
+                    <td class="${isCorrectObjetivo ? 'correct' : 'incorrect'}">${isCorrectObjetivo ? 'Correto' : 'Incorreto'}</td>
+                    <td>${angloAnswer ? angloAnswer.resposta : 'N/A'}</td>
+                    <td class="${isCorrectAnglo ? 'correct' : 'incorrect'}">${isCorrectAnglo ? 'Correto' : 'Incorreto'}</td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            // Update summaries
+            document.getElementById('totalSummary').innerHTML = `
+                <h3>Resultado Total</h3>
+                <p>Objetivo: ${resultsObjetivo.total} de ${studentData.questoes.length} 
+                <span class="percentage">(${calculatePercentage(resultsObjetivo.total, studentData.questoes.length)}%)</span></p>
+                <p>Anglo: ${resultsAnglo.total} de ${studentData.questoes.length}
+                <span class="percentage">(${calculatePercentage(resultsAnglo.total, studentData.questoes.length)}%)</span></p>
+            `;
+
+            const createAreaHTML = (results) => `
+                <p>Inglês: ${results.ingles.correct}/${results.ingles.total} 
+                <span class="percentage">(${calculatePercentage(results.ingles.correct, results.ingles.total)}%)</span></p>
+                <p>Espanhol: ${results.espanhol.correct}/${results.espanhol.total}
+                <span class="percentage">(${calculatePercentage(results.espanhol.correct, results.espanhol.total)}%)</span></p>
+                <p>Linguagens: ${results.linguagens.correct}/${results.linguagens.total}
+                <span class="percentage">(${calculatePercentage(results.linguagens.correct, results.linguagens.total)}%)</span></p>
+                <p>Ciências Humanas: ${results.humanas.correct}/${results.humanas.total}
+                <span class="percentage">(${calculatePercentage(results.humanas.correct, results.humanas.total)}%)</span></p>
+            `;
+
+            document.getElementById('areaSummary').innerHTML = `
+                <h3>Resultados por Área</h3>
+                <div style="display: flex; justify-content: space-between;">
+                    <div>
+                        <h4>Objetivo</h4>
+                        ${createAreaHTML(resultsObjetivo)}
+                    </div>
+                    <div>
+                        <h4>Anglo</h4>
+                        ${createAreaHTML(resultsAnglo)}
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
