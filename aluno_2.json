@@ -1,0 +1,392 @@
+{
+    "tipo": "resolucao",
+    "respondente": "Claude Sonnet 3.5",
+    "data": "2024-03-11",
+    "horario": "08:00:00",
+    "tempo": "04:00:00",
+    "modelo": "GPT-4",
+    "prova": "Azul",
+    "ano": 2024,
+    "questoes": [
+      {
+        "questao": "Questao 01 - Ingles",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 02 - Ingles",
+        "resposta": "A"
+      },
+      {
+        "questao": "Questao 03 - Ingles",
+        "resposta": "A"
+      },
+      {
+        "questao": "Questao 04 - Ingles",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 05 - Ingles",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 01 - Espanhol",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 02 - Espanhol",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 03 - Espanhol",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 04 - Espanhol",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 05 - Espanhol",
+        "resposta": "A"
+      },
+      {
+        "questao": "Questao 06 - Linguagens",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 07 - Linguagens",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 08 - Linguagens",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 09 - Linguagens",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 10 - Linguagens",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 11 - Linguagens",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 12 - Linguagens",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 13 - Linguagens",
+        "resposta": "A"
+      },
+      {
+        "questao": "Questao 14 - Linguagens",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 15 - Linguagens",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 16 - Linguagens",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 17 - Linguagens",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 18 - Linguagens",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 19 - Linguagens",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 20 - Linguagens",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 21 - Linguagens",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 22 - Linguagens",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 23 - Linguagens",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 24 - Linguagens",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 25 - Linguagens",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 26 - Linguagens",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 27 - Linguagens",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 28 - Linguagens",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 29 - Linguagens",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 30 - Linguagens",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 31 - Linguagens",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 32 - Linguagens",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 33 - Linguagens",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 34 - Linguagens",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 35 - Linguagens",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 36 - Linguagens",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 37 - Linguagens",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 38 - Linguagens",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 39 - Linguagens",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 40 - Linguagens",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 41 - Linguagens",
+        "resposta": "A"
+      },
+      {
+        "questao": "Questao 42 - Linguagens",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 43 - Linguagens",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 44 - Linguagens",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 45 - Linguagens",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 46 - Ciências Humanas",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 47 - Ciências Humanas",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 48 - Ciências Humanas",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 49 - Ciências Humanas",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 50 - Ciências Humanas",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 51 - Ciências Humanas",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 52 - Ciências Humanas",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 53 - Ciências Humanas",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 54 - Ciências Humanas",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 55 - Ciências Humanas",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 56 - Ciências Humanas",
+        "resposta": "A"
+      },
+      {
+        "questao": "Questao 57 - Ciências Humanas",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 58 - Ciências Humanas",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 59 - Ciências Humanas",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 60 - Ciências Humanas",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 61 - Ciências Humanas",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 62 - Ciências Humanas",
+        "resposta": "A"
+      },
+      {
+        "questao": "Questao 63 - Ciências Humanas",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 64 - Ciências Humanas",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 65 - Ciências Humanas",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 66 - Ciências Humanas",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 67 - Ciências Humanas",
+        "resposta": "A"
+      },
+      {
+        "questao": "Questao 68 - Ciências Humanas",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 69 - Ciências Humanas",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 70 - Ciências Humanas",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 71 - Ciências Humanas",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 72 - Ciências Humanas",
+        "resposta": "A"
+      },
+      {
+        "questao": "Questao 73 - Ciências Humanas",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 74 - Ciências Humanas",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 75 - Ciências Humanas",
+        "resposta": "A"
+      },
+      {
+        "questao": "Questao 76 - Ciências Humanas",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 77 - Ciências Humanas",
+        "resposta": "A"
+      },
+      {
+        "questao": "Questao 78 - Ciências Humanas",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 79 - Ciências Humanas",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 80 - Ciências Humanas",
+        "resposta": "A"
+      },
+      {
+        "questao": "Questao 81 - Ciências Humanas",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 82 - Ciências Humanas",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 83 - Ciências Humanas",
+        "resposta": "E"
+      },
+      {
+        "questao": "Questao 84 - Ciências Humanas",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 85 - Ciências Humanas",
+        "resposta": "A"
+      },
+      {
+        "questao": "Questao 86 - Ciências Humanas",
+        "resposta": "D"
+      },
+      {
+        "questao": "Questao 87 - Ciências Humanas",
+        "resposta": "A"
+      },
+      {
+        "questao": "Questao 88 - Ciências Humanas",
+        "resposta": "C"
+      },
+      {
+        "questao": "Questao 89 - Ciências Humanas",
+        "resposta": "B"
+      },
+      {
+        "questao": "Questao 90 - Ciências Humanas",
+        "resposta": "C"
+      }
+    ]
+}
